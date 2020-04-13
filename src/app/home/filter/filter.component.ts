@@ -1,20 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 import {DrinkService} from '../drink.service';
 import {CoctailFillter} from '../model';
-
-/*interface DrinksCategory {
-  drinks: [
-    {strCategory: string}
-  ]
-}
-
-interface CoctailFillter {
-  name: string,
-  isChecked: boolean,
-}*/
 
 @Component({
   selector: 'app-filter',
