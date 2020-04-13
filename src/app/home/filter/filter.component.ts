@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {log} from 'util';
+import {DrinkService} from '../drink.service';
+import {CoctailFillter} from '../model';
 
-interface DrinksCategory {
+/*interface DrinksCategory {
   drinks: [
     {strCategory: string}
   ]
 }
 
-interface Coctail {
+interface CoctailFillter {
   name: string,
   isChecked: boolean,
-}
+}*/
 
 @Component({
   selector: 'app-filter',
@@ -21,25 +22,25 @@ interface Coctail {
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  listOfCategoriestUrl = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-  catData = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary Drink';
+  coctails: CoctailFillter[];
 
-  coctails: Coctail[] = [];
-  constructor(private http: HttpClient) { }
+  constructor(private drink: DrinkService) {}
 
   ngOnInit(): void {
-    this.http.get<DrinksCategory>(this.listOfCategoriestUrl)
-      .pipe(
-        tap(cats => console.log(cats)),
-        map(cats => cats.drinks.map(cat => cat.strCategory))
-      )
-      .subscribe(categoryTitles => {
-        console.log(categoryTitles);
-        categoryTitles.forEach( (title, index) => this.coctails.push({ name: title, isChecked: true }) );
+    this.drink.getAllCategoriesTitle()
+      .subscribe(coctails => {
+        this.coctails = coctails;
+        this.applyFillters();
       });
-
-    this.http.get<DrinksCategory>(this.catData)
-      .subscribe(res => console.log(res));
   }
 
+  toggle(index: number){
+    this.coctails[index].isChecked = !this.coctails[index].isChecked;
+  }
+
+  applyFillters(): void{
+    const appliedCategories: string[] = [];
+    this.coctails.forEach( category => (category.isChecked === true) && appliedCategories.push(category.name) );
+    this.drink.updateContent(appliedCategories);
+  }
 }

@@ -1,30 +1,10 @@
 <div class="container">
-  <div class="catigory-list">
-    <p class="catigory-list_title">title</p>
+  <div class="catigory-list" *ngFor="let category of data">
+    <p class="catigory-list_title">{{ category?.categoryTitle }}</p>
     <div class="cards">
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
-      </div>
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
-      </div>
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
-      </div>
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
-      </div>
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
-      </div>
-      <div class="drink-card">
-        <img src="" alt="">
-        <p class="drink-card_title">drink title</p>
+      <div class="drink-card" *ngFor="let drink of category.drinks">
+        <img [src]="drink.imageUrl" [alt]="drink?.title">
+        <p class="drink-card_title">{{ drink?.title }}</p>
       </div>
     </div>
   </div>

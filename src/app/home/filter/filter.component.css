@@ -28,6 +28,10 @@ margin-bottom: 20px;
   text-align: center;
 }
 
+.filter-item_box:hover{
+  cursor: pointer;
+}
+
 .filter-item_text {
   word-break: break-word;
 }

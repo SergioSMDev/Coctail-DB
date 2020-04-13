@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  drinksConfig: {
+    listOfCategories: 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
+    singleCategory: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=',
+  },
 };
 
 /*

@@ -1,7 +1,7 @@
 .container {
   position: absolute;
   left: 249px;
-  max-height: calc(100% - 70px);
+  height: 100vh;
   width: calc(100% - 249px);
   padding-left: 50px;
   padding-right: 51px;
@@ -26,24 +26,23 @@
 .cards {
   display: flex;
   flex-flow: wrap;
-  /*justify-content: space-evenly;*/
+  margin-bottom: -50px;
 }
 
 .drink-card {
-  display: inline-block;
+  width: 150px;
   margin: 0 auto 50px 0;
-  border: 1px solid blue;
 }
 
 .drink-card > img {
-  min-width: 150px;
-  min-height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .drink-card_title {
   padding-top: 20px;
   text-align: center;
+  word-break: break-word;
   font-size: 18px;
   color: #000;
-  border: 1px solid red;
 }
